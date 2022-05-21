@@ -30,7 +30,7 @@ metadata:
   labels:
     app: lb-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - nodePort: 30080
     targetPort: 5000
