@@ -23,16 +23,36 @@ spec:
         resources: {}
 status: {}
 ---
-apiVersion: v1
-kind: Service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: lb-service
+#   labels:
+#     app: lb-service
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#     targetPort: 5000
+#   selector:
+#     app: flaskdemo
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: lb-service
   labels:
     app: lb-service
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 5000
-  selector:
-    app: flaskdemo
+  rules:
+#    - host: hello-world.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flaskdemo-ingress
+                port:
+                  number: 80
