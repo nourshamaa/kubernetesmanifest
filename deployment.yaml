@@ -47,7 +47,7 @@ metadata:
 spec:
   rules:
 #    - host: hello-world.info
-      http:
+     - http:
         paths:
           - path: /
             pathType: Prefix
