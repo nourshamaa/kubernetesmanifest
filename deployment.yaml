@@ -23,19 +23,20 @@ spec:
         resources: {}
 status: {}
 ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: lb-service
-#   labels:
-#     app: lb-service
-# spec:
-#   type: LoadBalancer
-#   ports:
-#   - port: 80
-#     targetPort: 5000
-#   selector:
-#     app: flaskdemo
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: lb-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: flaskdemo
+---    
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
